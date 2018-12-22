@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block title %} {{ writeup.name }}{% endblock %} {% block content %}
+<div class="current">
+    {{ writeup.name }}
+</div>
+{% autoescape off %}
+<p>
+    {{ writeup.content }}
+</p>
+{% endautoescape %} {% endblock %}

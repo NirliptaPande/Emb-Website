@@ -1,0 +1,253 @@
+{% load static %} {% get_media_prefix as MEDIA_URL %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Description" content="Education, Exposure, Research, Online Lectures" />
+    <meta name="Keywords" content="Online Lectures, Speakers, BITSAA, BITS Pilani" />
+    <title>BITS Embryo:{% block title %}{% endblock %}</title>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}templates/images/favicon.ico" />
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="css/style.css" rel='stylesheet' type='text/css' />
+    <script src="js/jquery.min.js"></script>
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!--start-smoth-scrolling-->
+</head>
+
+<body>
+    <!--header-top-starts-->
+    <div class="header-top">
+        <div class="container">
+            <div class="head-main">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--header-top-end-->
+    <!--start-header-->
+    <div class="header">
+        <div class="container">
+            <div class="head">
+                <div class="navigation">
+                    <span class="menu"></span>
+                    <ul class="navig">
+                        <li>
+                            <a href="/" class="active">Home</a>
+                        </li>
+                        <li>
+                            <a href="/lectures">Lectures</a>
+                        </li>
+                        <li>
+                            <a href="https://bits-apogee.org/2017/aic/">AIC</a>
+                        </li>
+                        <li>
+                            <a href="/gallery">Gallery</a>
+                        </li>
+                        <li>
+                            <a href="/newsletters">
+                                Newsletters
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about">
+                                About us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/theteam">
+                                The Team
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="submit" value="">
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span class="fb"> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="twit"> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="pin"> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="rss"> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="drbl"> </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- script-for-menu -->
+    <!-- script-for-menu -->
+    <script>
+        $("span.menu").click(function () {
+            $(" ul.navig").slideToggle("slow", function () {});
+        });
+    </script>
+    <!-- script-for-menu -->
+    <!--slide-starts-->
+    <div class="slide">
+        <div class="container">
+            <div class="fle-xsel">
+                <ul id="flexiselDemo3">
+                    {% for event in upcoming_events %}
+                    <li>
+                        <div class="banner-1">
+                            {% if event.image == 'events/default.jpg' %}
+                            <a href="/">
+                                <img src="{{MEDIA_URL}}{{ event.image }}" class="img-responsive" />
+                            </a>
+                            {% else %}
+                            <a href="/event_id={{ event.id }}">
+                                <img src="{{MEDIA_URL}}{{ event.image }}" class="img-responsive" />
+                            </a>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <script type="text/javascript">
+                    $(window).load(function () {
+
+                        $("#flexiselDemo3").flexisel({
+                            visibleItems: 1,
+                            animationSpeed: 1000,
+                            autoPlay: true,
+                            autoPlaySpeed: 6000,
+                            pauseOnHover: true,
+                            enableResponsiveBreakpoints: true,
+                            responsiveBreakpoints: {
+                                portrait: {
+                                    changePoint: 480,
+                                    visibleItems: 1
+                                },
+                                landscape: {
+                                    changePoint: 640,
+                                    visibleItems: 1
+                                },
+                                tablet: {
+                                    changePoint: 768,
+                                    visibleItems: 1
+                                }
+                            }
+                        });
+
+                    });
+                </script>
+                <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!--slide-end-->
+    <!--about-starts-->
+    <div class="about">
+        <div class="container">
+            <div class="about-main">
+                <div class="col-md-8 about-left">
+                    {% autoescape off%} {% block content %} {% endblock %} {% endautoescape %}
+                </div>
+                <!-- RIGHT SIDE FLEX -->
+                <div class="col-md-4 about-right heading">
+                    <!--slide-starts-->
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Recent Lectures</h4>
+                        <ul id="flexrightside">
+                            {% autoescape off %} {% for lecture in recent_lectures %}
+                            <li>
+                                <a href="#">
+                                    <!-- <div class="banner-1"> -->
+                                    <img src="{{MEDIA_URL}}{{lecture.photo|default:'Speakerphotos/noimage.jpg' }}" class="img-responsive" alt="">
+                                    <a href="/lecturedetail_id={{lecture.id}}">{{lecture.topic}}</a>
+                                    <br /> by
+                                    <br /> {{lecture.presenter}}
+                                    <br /> {{lecture.date}}
+                                    <br />Campus: {{lecture.campus}}</p>
+                                </a>
+                            </li>
+                            {% endfor %} {% endautoescape %}
+                        </ul>
+
+                        <script type="text/javascript">
+                            $(window).load(function () {
+
+                                $("#flexrightside").flexisel({
+                                    visibleItems: 1,
+                                    animationSpeed: 1000,
+                                    autoPlay: true,
+                                    autoPlaySpeed: 6000,
+                                    pauseOnHover: true,
+                                });
+
+                            });
+                        </script>
+                        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <!--slide-end-->
+                    <!-- /RIGHT SIDE NAV -->
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--about-end-->
+        <!--footer-starts-->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-text">
+                    <p>&copy; Copyright {% now "Y" %} BITS Embryo | Contact us : embryoclub@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <!--footer-end-->
+</body>
+
+</html>
